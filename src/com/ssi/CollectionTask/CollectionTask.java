@@ -1,9 +1,10 @@
 package com.ssi.CollectionTask;
-
-
 import java.util.*;
 
+
 public class CollectionTask {
+	
+	
 	static CollectionTask t=new CollectionTask();
 	static ArrayList <Employee> list= new ArrayList<Employee>();
 	static Scanner input = new Scanner(System. in);
@@ -27,9 +28,6 @@ public class CollectionTask {
 		 
 		 
 	 }
-	
-	 
-	
 	
 	public static void viewAll()
 				 
@@ -95,9 +93,6 @@ public class CollectionTask {
 	   	}
 		
 	}
-
-
-	
 	public  void viewDeptWise(){
 		 
   c = input. next();
@@ -117,6 +112,68 @@ for (int i = 0; i < list.size(); i++) {
 }	
 	}
 	
+	public static void viewSortedEmployee(){
+		Collections.sort(list);
+		System.out.println(list);	
+	}
+	public static void SortEmployee(){
+	   // System.out.println(list);
+		System.out.println("DEFAULT SORTING ON EMPLOYEE NUMBER GIVE YOUR CHOICE TO SORT ON DIFFERENT ASPECTS");
+		viewSortedEmployee();
+	    System.out.println("SORT ON THE BASIS OF:");
+	    System.out.println("1.EMPLOYEE NO");
+	    System.out.println("2.SALARY");
+	    System.out.println("3.EMPLOYEE NAME");
+	    System.out.println("4.EMPLOYEE DEPARTMENT");
+	    
+		int sortBasis=input.nextInt();
+		
+		if(sortBasis==1){
+			Collections.sort(list, new Comparator<Employee>(){
+		          @Override
+					public int compare(Employee e1, Employee e2) {
+						return e1.getEno()-e2.getEno();
+						
+					}});
+		}
+		else if(sortBasis==2){
+			Collections.sort(list, new Comparator<Employee>(){
+		          @Override
+					public int compare(Employee e1, Employee e2) {
+						return e1.getSal()-e2.getSal();
+					
+						
+					}});
+		}
+		else if(sortBasis==3){
+			Collections.sort(list, new Comparator<Employee>(){
+		          @Override
+					public int compare(Employee e1, Employee e2) {
+		        		int n=e1.getEname().compareTo(e2.getEname());
+		      			return n;
+						
+					}});
+		}
+		else if(sortBasis==4){
+			Collections.sort(list, new Comparator<Employee>(){
+		          @Override
+					public int compare(Employee e1, Employee e2) {
+		        	  int n=e1.getDept().compareTo(e2.getDept());
+		      			return n;
+						
+					}});
+		}
+			else System.out.println("INVALID ENTRY");
+			
+			
+		for(Employee emp:list){
+			System.out.println(emp);
+			}	
+	
+	
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -129,7 +186,8 @@ for (int i = 0; i < list.size(); i++) {
 		System.out.println("5.Clear Data ");
 		System.out.println("6.Change Salary ");
 		System.out.println("7.View Dept Wise ");
-		System.out.println("8. EXIT");
+		System.out.println("8.viewSortedEmployee");
+		System.out.println("9. EXIT");
 		//Scanner input = new Scanner(System. in);
 		 while(true){  
 		int choice = input. nextInt();
@@ -158,13 +216,19 @@ for (int i = 0; i < list.size(); i++) {
 		case 7: t.viewDeptWise();
 		  break;
 		  
-		case 8: System.exit(1);
+		 case 8: SortEmployee();
+		  break;
+		  
+		case 9: System.exit(1);
 		  break;
 		default:
 			break;
 		}
 		
-	       }     
+	  }     
 	}
-
+	
+	
+	
+	
 }
